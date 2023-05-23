@@ -11,6 +11,7 @@
     "removeComments": true,
     // 当发生错误时不要生成结果
     "noEmitOnError": true,
+    "esModuleInterop": true,
     "lib": ["ESNext"]
   },
   "include": ["./src/*"]
