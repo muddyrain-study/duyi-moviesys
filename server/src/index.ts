@@ -1,8 +1,17 @@
+import 'reflect-metadata';
+
 import { validate } from 'class-validator';
+import { plainToClass } from 'class-transformer';
 import { Movie } from './entities/Movie';
-const m = new Movie();
-m.name = 'a';
+const m: any = {};
+m.name = 'a1';
 m.types = ['喜剧'];
-validate(m).then(errors => {
+m.areas = ['中国大陆'];
+m.timeLong = 2;
+
+const movie = plainToClass(Movie, m as Object);
+validate(movie).then(errors => {
   console.log(errors);
 });
+
+console.log(movie, typeof movie.name);
