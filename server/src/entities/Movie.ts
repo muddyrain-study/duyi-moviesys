@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { Type, plainToClass } from 'class-transformer';
 import {
   ArrayMinSize,
   IsArray,
@@ -8,6 +8,7 @@ import {
   Min,
   MinLength,
   max,
+  validate,
 } from 'class-validator';
 export class Movie {
   @IsNotEmpty({ message: '电影名称不能为空' })
@@ -50,4 +51,31 @@ export class Movie {
 
   @Type(() => String)
   public poster?: string;
+
+  /**
+   * 验证当前电影对象
+   */
+  public async validateThis(skipMissing = false): Promise<string[]> {
+    const errors = await validate(this, {
+      skipMissingProperties: skipMissing,
+    });
+    const result: string[] = [];
+    const temp = errors.map(e => Object.values(e?.constraints || []));
+    temp.forEach(t => {
+      result.push(...t);
+    });
+    return result;
+  }
+
+  /**
+   * 将一个平面对象转换成一个movie 对象
+   * @param plainObject 电影对象
+   * @returns 电影
+   */
+  public static transform(plainObject: object): Movie {
+    if (plainObject instanceof Movie) {
+      return plainObject;
+    }
+    return plainToClass(Movie, plainObject);
+  }
 }
