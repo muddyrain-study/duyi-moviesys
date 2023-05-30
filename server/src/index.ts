@@ -1,11 +1,12 @@
 import 'reflect-metadata';
-import { MovieService } from './services/MovieService';
-import { Movie } from './entities/Movie';
+import Express from 'express';
 
-const condi: any = {
-  page: 1,
-};
+const app = Express();
 
-MovieService.find(condi).then(res => {
-  console.log(res.count);
+app.use('/api/movie', (req, res) => {
+  res.send('hello');
+});
+
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 });
