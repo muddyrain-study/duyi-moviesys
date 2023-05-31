@@ -1,9 +1,17 @@
 import Express, { Router } from 'express';
+import { MovieService } from '../services/MovieService';
+import { ResponseHelper } from './ResponseHelper';
 
 const router = Express.Router();
 
-router.get('/', (req, res) => {
-  res.send('get 请求');
+router.get('/:id', async (req, res) => {
+  try {
+    const movieId = req.params.id;
+    const movie = await MovieService.findById(movieId);
+    ResponseHelper.sendData(movie, res);
+  } catch (error) {
+    ResponseHelper.sendData(null, res);
+  }
 });
 
 router.post('/', (req, res) => {
