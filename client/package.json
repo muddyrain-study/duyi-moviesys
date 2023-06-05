@@ -41,7 +41,8 @@
     ]
   },
   "devDependencies": {
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "redux": "^4.2.1"
   },
   "proxy": "http://localhost:3000"
 }
