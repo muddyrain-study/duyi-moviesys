@@ -41,8 +41,10 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-logger": "^3.0.9",
     "axios": "^1.4.0",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6"
   },
   "proxy": "http://localhost:3000"
 }

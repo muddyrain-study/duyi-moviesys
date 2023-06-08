@@ -27,7 +27,7 @@ const defaultState: IMovieState = {
   isLoading: false,
 };
 
-const svaeMovie: Reducer<IMovieState, SaveMoviesAction> = (state, action) => {
+const saveMovie: Reducer<IMovieState, SaveMoviesAction> = (state, action) => {
   return {
     ...state,
     ...{
@@ -71,16 +71,14 @@ export default function moveReducer(
 ) {
   switch (action.type) {
     case 'movie_save':
-      break;
-
+      return saveMovie(state, action);
     case 'movie_setCondition':
-      break;
+      return setCondition(state, action);
     case 'movie_delete':
-      break;
+      return deleteMovie(state, action);
     case 'movie_set_loading':
-      break;
-
+      return setLoading(state, action);
     default:
-      break;
+      return state;
   }
 }

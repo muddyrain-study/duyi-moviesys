@@ -57,3 +57,11 @@ export type MovieActions =
   | SetLoadingAction
   | SetConditionAction
   | DeleteAction;
+
+const movieActions = {
+  saveMoviesAction,
+  setLoadingAction,
+  setConditionAction,
+  deleteAction,
+};
+export default movieActions;
