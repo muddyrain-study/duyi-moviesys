@@ -6,7 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { store } from './redux/store';
 import movieActions from './redux/actions/MovieAction';
 
-store.dispatch(movieActions.setLoadingAction(true));
+store.dispatch(
+  movieActions.fetchMovies({
+    page: 2,
+  })
+);
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

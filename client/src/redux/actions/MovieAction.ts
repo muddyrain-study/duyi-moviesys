@@ -79,11 +79,23 @@ function fetchMovies(
   };
 }
 
+function deleteMovie(
+  id: string
+): ThunkAction<Promise<void>, IRootState, unknown, MovieActions> {
+  return async dispatch => {
+    dispatch(setLoadingAction(true));
+    await MovieService.delete(id);
+    dispatch(deleteAction(id));
+    dispatch(setLoadingAction(false));
+  };
+}
+
 const movieActions = {
   saveMoviesAction,
   setLoadingAction,
   setConditionAction,
   deleteAction,
   fetchMovies,
+  deleteMovie,
 };
 export default movieActions;
